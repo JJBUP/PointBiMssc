@@ -47,8 +47,8 @@ For the Scannet v2 dataset you can click [here]([ScanNet | Richly-annotated 3D R
 You need to set the data path, which can be placed anywhere in the data directory of the project folder through a soft connection
 
 ```bash
-ln -s /data/...  ./data/scannet
-ln -s /data/...  ./data/wcs3d
+ln -s /data/...  ./data/scannet/train...
+ln -s /data/...  ./data/wcs3d/train...
 ```
 
 
