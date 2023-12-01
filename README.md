@@ -1,5 +1,7 @@
 # PointBiMssc
 
+
+
 ## Abstruction
 
 > Point cloud semantic segmentation is a key technique in the digital twin construction of water conservancy project, which can realize the identification and change detection of terrain features. However, constructing full-range point cloud data of the water conservancy environment remains one of the critical challenges for achieving comprehensive digital twin construction. Meanwhile, the openness of the water conservancy environment makes its point cloud data highly complex in structure with indistinct boundaries between different categories and huge differences in volume. This poses challenges to the accuracy and robustness of point cloud semantic segmentation algorithms. Therefore, we adopt unmanned aerial vehicle (UAV)-borne lidar to scan water conservancy scenes and construct a large-scale point cloud dataset, Water Conservancy Segment 3D (WCS3D), with approximately 265 million points. On this basis, we propose a point cloud segmentation model named PointBiMssc based on a bidirectional multi-scale attention mechanism for point cloud semantic segmentation in water conservancy environments. Experiments on our constructed dataset WCS3D and the benchmark dataset ScanNet V2 demonstrate that the proposed PointBiMssc model can accurately accomplish point cloud semantic segmentation tasks and generate high-precision segmentation boundaries. It surpasses the latest models including PointMetaBase, PointConvFormer, SPoTr and PointNeXt on the evaluation metrics of mIoU and OA, achieving state-of-the-art performance.
@@ -45,15 +47,15 @@ For the Scannet v2 dataset you can click [here]([ScanNet | Richly-annotated 3D R
 You need to set the data path, which can be placed anywhere in the data directory of the project folder through a soft connection
 
 ```bash
-ln -s /data/...  ./data/wcs3d
 ln -s /data/...  ./data/scannet
+ln -s /data/...  ./data/wcs3d
 ```
 
 
 
 ## Weight
 
-Click [here](https://drive.google.com/drive/folders/1HTYUtMmzedyPlqFycs2q3hykf1O8AUf0?usp=drive_link)  to download weights and create a weight folder in the following directory
+Click [here](https://drive.google.com/drive/folders/1HTYUtMmzedyPlqFycs2q3hykf1O8AUf0?usp=drive_link)  to download weights and create a weight folder in the root directory, like **[PointBiMssc/weight]**
 
 
 
