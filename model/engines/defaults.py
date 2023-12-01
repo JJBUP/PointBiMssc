@@ -73,7 +73,7 @@ def default_argument_parser(epilog=None):
     """,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    parser.add_argument('--config-file', default="configs/zhongshui/semseg-pt-v1-spp-fusion-fp4.py", metavar="FILE",
+    parser.add_argument('--config-file', default="configs/semseg-wcs3d.py", metavar="FILE",
                         help="path to config file")
     parser.add_argument("--num-gpus", type=int, default=3, help="number of gpus *per machine*")
     parser.add_argument("--num-machines", type=int, default=1, help="total number of machines")

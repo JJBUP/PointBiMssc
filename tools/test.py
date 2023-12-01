@@ -18,8 +18,10 @@ from model.engines.test import TEST
 
 def get_parser():
     parser = argparse.ArgumentParser(description='Pointcept Test Process')
-    parser.add_argument('--config-file', default="configs/wcs3d/pointbimssc.py", metavar="FILE", help="path to config file")
-    parser.add_argument('--options', nargs='+', action=DictAction, help='custom options')
+    parser.add_argument('--config', default="configs/semseg-scannet.py",
+                        metavar="FILE", help="path to config file")
+    parser.add_argument('--options', nargs='+',
+                        action=DictAction, help='custom options')
     args = parser.parse_args()
     return args
 
@@ -28,7 +30,7 @@ def main():
     args = get_parser()
 
     # config_parser
-    cfg = Config.fromfile(args.config_file)
+    cfg = Config.fromfile(args.config)
 
     if args.options is not None:
         cfg.merge_from_dict(args.options)
@@ -43,12 +45,14 @@ def main():
 
     # default_setup
     set_seed(cfg.seed)
-    cfg.batch_size_val_per_gpu = cfg.batch_size_test  # TODO: add support to multi gpu test
+    # TODO: add support to multi gpu test
+    cfg.batch_size_val_per_gpu = cfg.batch_size_test
     cfg.num_worker_per_gpu = cfg.num_worker  # TODO: add support to multi gpu test
 
     # tester init
     weight_name = os.path.basename(cfg.weight).split(".")[0]
-    logger = get_root_logger(log_file=os.path.join(cfg.save_path, "test-{}.log".format(weight_name)))
+    logger = get_root_logger(log_file=os.path.join(
+        cfg.save_path, "test-{}.log".format(weight_name)))
     logger.info("=> Loading config ...")
     logger.info(f"Save path: {cfg.save_path}")
     logger.info(f"Config:\n{cfg.pretty_text}")
@@ -56,7 +60,8 @@ def main():
     # build model
     logger.info("=> Building model ...")
     model = build_model(cfg.model).cuda()
-    n_parameters = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    n_parameters = sum(p.numel()
+                       for p in model.parameters() if p.requires_grad)
     logger.info(f"Num params: {n_parameters}")
 
     # build dataset
@@ -71,7 +76,8 @@ def main():
 
     # load checkpoint
     if os.path.isfile(cfg.weight):
-        checkpoint = torch.load(cfg.weight, map_location=torch.device('cuda', cfg.test_set_gpu))
+        checkpoint = torch.load(
+            cfg.weight, map_location=torch.device('cuda', cfg.test_set_gpu))
         state_dict = checkpoint['state_dict']
         new_state_dict = collections.OrderedDict()
         for k, v in state_dict.items():
@@ -79,8 +85,8 @@ def main():
             new_state_dict[name] = v
         model.load_state_dict(new_state_dict, strict=True)
         checkpoint['state_dict'] = model.state_dict()
-        torch.save(checkpoint,"log/wcs3d/pointbimssc/model/model_best_2.pth")
-        logger.info("=> loaded weight '{}' (epoch {})".format(cfg.weight, checkpoint['epoch']))
+        logger.info("=> loaded weight '{}' (epoch {})".format(
+            cfg.weight, checkpoint['epoch']))
         cfg.epochs = checkpoint['epoch']  # TODO: move to self
     else:
         raise RuntimeError("=> no checkpoint found at '{}'".format(cfg.weight))
