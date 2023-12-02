@@ -42,7 +42,7 @@ CUDA_VISIBLE_DEVICES=0 python -c "import torch; print (torch.cuda.get_device_cap
 
 For the WCS3D dataset you can click [here]([XTU-SCS-HappyCV/WCS3D: A point cloud dataset for outdoor water conservancy scenarios. (github.com)](https://github.com/XTU-SCS-HappyCV/WCS3D))
 
-For the Scannet v2 dataset you can click [here]([ScanNet | Richly-annotated 3D Reconstructions of Indoor Scenes (scan-net.org)](http://www.scan-net.org/)). Note that please download the data in kaggle's [trainval_0.25_pth.zip]([segment-hydraulic (kaggle.com)](https://www.kaggle.com/datasets/happycv/segment-hydraulic/data)) file
+For the Scannet v2 dataset you can click [here]([ScanNet | Richly-annotated 3D Reconstructions of Indoor Scenes (scan-net.org)](http://www.scan-net.org/)). Note that please download the data in kaggle's [trainval_0.25_pth.zip](https://www.kaggle.com/datasets/happycv/segment-hydraulic/data?select=trainval_0.25_pth) file
 
 You need to set the data path, which can be placed anywhere in the data directory of the project folder through a soft connection
 
