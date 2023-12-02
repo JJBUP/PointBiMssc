@@ -38,7 +38,7 @@ CUDA_VISIBLE_DEVICES=0 python -c "import torch; print (torch.cuda.get_device_cap
 
 
 
-## Dateset Setting
+## Dateset
 
 For the WCS3D dataset you can click [here]([XTU-SCS-HappyCV/WCS3D: A point cloud dataset for outdoor water conservancy scenarios. (github.com)](https://github.com/XTU-SCS-HappyCV/WCS3D))
 
@@ -60,6 +60,8 @@ Click [here](https://drive.google.com/drive/folders/1HTYUtMmzedyPlqFycs2q3hykf1O
 
 
 ## Quick Start
+
+With the above steps ready, we can start training and testing, note that only the key parameters are given in our sh file, please refer to the config file for details
 
 ### Training
 
